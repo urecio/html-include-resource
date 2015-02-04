@@ -7,7 +7,7 @@ class IncludeResourceView
 
     # Create message element
     message = document.createElement('div')
-    message.textContent = "The IncludeResource package is Alive! It's ALIVE!"
+    message.textContent = "The HtmlIncludeResource package is Alive! It's ALIVE!"
     message.classList.add('message')
     @element.appendChild(message)
 

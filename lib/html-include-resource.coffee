@@ -20,7 +20,6 @@ module.exports =
 
       for entry in selectedEntries
         relativePath = path.relative(''+editor.getPath,''+entry.getPath())
-
         entryCounter++
         if entryCounter > 1 then newLine = '\n'
 
@@ -28,5 +27,7 @@ module.exports =
         switch path.extname(entry.getPath())
           when '.js','.coffee' then htmlTags += newLine+'<script src="'+relativePath+'"></script>'
           when '.css' then htmlTags += newLine+'<link rel="stylesheet" href="'+relativePath+'">'
+          when '.svg' then htmlTags += newLine+'<object data="'+relativePath+'" type="image/svg+xml"><img src="'+path.dirname(relativePath)+'/'+path.basename(relativePath,".svg")+'fallback.jpg" /></object>'
+          when '.jpg','.jpeg','.gif','.tiff','.png','.bmp','.rif','webp' then htmlTags += newLine+'<img src="'+relativePath+'" alt="">'
 
-      selection.insertText(htmlTags)
+      selection.insertText(htmlTags, {'autoIndent':true})
