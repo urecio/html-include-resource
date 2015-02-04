@@ -8,8 +8,8 @@ module.exports =
 
   include: ->
     htmlTags = ''
-    editor = atom.workspace.activePaneItem
-    selection = editor.getSelection()
+    editor = atom.workspace.getActivePaneItem()
+    selection = editor.getLastSelection()
     treeView = atom.packages.getLoadedPackage('tree-view')
     treeView = require(treeView.mainModulePath).treeView
     selectedEntries = treeView.list[0].querySelectorAll('.selected')
@@ -19,7 +19,7 @@ module.exports =
       newLine = ''
 
       for entry in selectedEntries
-        relativePath = path.relative(''+editor.getPath,''+entry.getPath())
+        relativePath = path.relative(''+editor.getPath(),''+entry.getPath())
         entryCounter++
         if entryCounter > 1 then newLine = '\n'
 
