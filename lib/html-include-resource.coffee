@@ -19,7 +19,11 @@ module.exports =
       newLine = ''
 
       for entry in selectedEntries
-        relativePath = path.relative(''+editor.getPath(),''+entry.getPath())
+        relativePath = path.relative(''+path.dirname(editor.getPath()),''+path.dirname(entry.getPath()))
+        fileName = if relativePath != '' then '/' else ''
+        fileName += path.basename(entry.getPath())
+        relativePath += fileName
+
         entryCounter++
         if entryCounter > 1 then newLine = '\n'
 
