@@ -1,10 +1,13 @@
 {
   "name": "html-include-resource",
   "main": "./lib/html-include-resource",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A short description of your package",
   "activationCommands": {
-    "atom-workspace": ["html-include-resource:toggle", "html-include-resource:include"]
+    "atom-workspace": [
+      "html-include-resource:toggle",
+      "html-include-resource:include"
+    ]
   },
   "repository": "https://github.com/urecio/html-include-resource",
   "license": "MIT",
