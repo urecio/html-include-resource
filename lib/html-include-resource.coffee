@@ -4,7 +4,7 @@ path = require 'path'
 
 module.exports =
   activate: ->
-    atom.workspaceView.command "html-include-resource:include", => @include()
+    atom.commands.add 'atom-workspace', "html-include-resource:include", => @include()
 
   include: ->
     htmlTags = ''
