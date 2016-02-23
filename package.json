@@ -14,5 +14,7 @@
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "image-size": "^0.4.0"
+  }
 }

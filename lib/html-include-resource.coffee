@@ -1,6 +1,7 @@
 IncludeResourceView = require './html-include-resource-view'
 {CompositeDisposable} = require 'atom'
 path = require 'path'
+imageSize = require 'image-size'
 
 module.exports =
   activate: ->
@@ -33,7 +34,9 @@ module.exports =
           when '.js','.coffee' then htmlTags += newLine+'<script src="'+relativePath+'"></script>'
           when '.css' then htmlTags += newLine+'<link rel="stylesheet" href="'+relativePath+'">'
           when '.svg' then htmlTags += newLine+'<object data="'+relativePath+'" type="image/svg+xml">\n<img src="'+path.dirname(relativePath)+'/'+path.basename(relativePath,".svg")+'fallback.jpg" />\n</object>'
-          when '.jpg','.jpeg','.gif','.tiff','.png','.bmp','.rif','webp' then htmlTags += newLine+'<img src="'+relativePath+'" alt="">'
+          when '.jpg','.jpeg','.gif','.tiff','.png','.bmp','.rif','webp'
+            dimensions = imageSize entry.getPath()
+            htmlTags += newLine+'<img src="'+relativePath+'" width="'+dimensions.width+'" height="'+dimensions.height+'" alt="">'
           when '.mp4','.ogg','webm' then htmlTags += newLine+'<video width="320" height="240" controls>\n<source src="'+relativePath+'" type="video/'+extension.replace(".","")+'">\nYour browser does not support the video tag.\n</video>'
           when '.mp3' then htmlTags += newLine+'<audio controls>\n<source src="'+relativePath+'" type="audio/mpeg">\nYour browser does not support the audio element.\n</audio>'
           when '.ogg','.wav' then htmlTags += newLine+'<audio controls>\n<source src="'+relativePath+'" type="audio/'+extension.replace(".","")+'">\nYour browser does not support the audio element.\n</audio>'
